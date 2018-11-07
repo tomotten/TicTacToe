@@ -1,5 +1,7 @@
 package com.tictactoe.tom.tictactoe;
 
+import android.os.Bundle;
+
 public class Game {
     final private int BOARD_SIZE = 3;
     private TileState[][] board;
@@ -18,8 +20,9 @@ public class Game {
         gameOver = false;
     }
 
+
     public TileState choose(int row, int column) {
-        if (gameOver == true) {
+        if (gameOver) {
             return TileState.INVALID;
         }
         if (board[row][column] == TileState.BLANK) {
@@ -41,7 +44,19 @@ public class Game {
         }
     }
 
-    public GameState goal() {
+    public void play(int row, int column, TileState state) {
+        if (state != TileState.BLANK) {
+            movesPlayed++;
+            if (playerOneTurn) {
+                playerOneTurn = false;
+            } else {
+                playerOneTurn = true;
+            }
+        }
+        board[row][column] = state;
+    }
+
+    public GameState won() {
         GameState result = GameState.IN_PROGRESS;
         TileState check; // keep track which player did last action, check if this player won.
         if(playerOneTurn == true) { // player 2 just played
@@ -68,7 +83,6 @@ public class Game {
     }
 
     private boolean checkRows(TileState check) {
-        Boolean result = false; // true if the game is won or the field is full.
         for(int i =0; i < BOARD_SIZE; i++) {
             boolean test = true;
             for(int j = 0; j < BOARD_SIZE; j++) {
