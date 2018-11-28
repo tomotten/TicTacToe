@@ -2,4 +2,5 @@
 
 
 
-![screenshot](doc/screenshotTicTacToe.png)
+<img src="doc/screenshotTicTacToe.png" width="300" height="500"> <img src="doc/game.png" width="300" height="500">
+<img src="doc/won.png" width="300" height="500">
